@@ -1,7 +1,11 @@
 class Animal:
-    alive = []  # Class attribute to track all living instances
+    alive: list["Animal"] = []  # Class attribute to track all living instances
 
-    def __init__(self, name: str, health: int = 100) -> None:
+    def __init__(
+            self,
+            name: str,
+            health: int = 100,
+    ) -> None:
         self.name = name
         self.health = health
         self.hidden = False
@@ -24,7 +28,11 @@ class Herbivore(Animal):
 
 
 class Carnivore(Animal):
-    def bite(self, prey: object) -> None:
+    def bite(
+            self,
+            prey: object,
+    ) -> None:
+
         # Initial safety checks
         if prey is self or not isinstance(prey, Herbivore) or prey.hidden:
             return False
